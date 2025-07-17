@@ -1,11 +1,18 @@
 {
-    "users":[
-         {
-            "id": "053c",
-            "name": "Javed",
-            "email": "javed@gmail.com",
-            "mobile": "9876543210",
-            "password": "12345"
-        }
-    ]
+  "users": [
+    {
+      "id": "053c",
+      "name": "Javed",
+      "email": "javed@gmail.com",
+      "mobile": "9876543210",
+      "password": "12345"
+    },
+    {
+      "id": "0f7d",
+      "name": "bhaskarbabucm",
+      "email": "ff@gmail.com",
+      "mobile": "09606729320",
+      "password": "12345678"
+    }
+  ]
 }
