@@ -4,8 +4,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './header.css'
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 function Header() {
+  const {isLogin, logoutUser} = useContext(AuthContext)
   return (
   <header>
       <Navbar expand="lg" className="bg-black header">
@@ -18,7 +21,10 @@ function Header() {
            <Link to="/users">Users</Link>
            <Link to="/books">Books</Link>
           </Nav>
-          <Link to="/signin" className="btn btn-light text-dark">Login</Link>
+          {
+            isLogin==true?( <button className="btn btn-danger" onClick={logoutUser}>Logout</button> ):( <Link to="/signin" className="btn btn-light text-dark">Login</Link>)
+          }
+         
         </Navbar.Collapse>
       </Container>
     </Navbar>

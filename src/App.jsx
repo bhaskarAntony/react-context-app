@@ -9,6 +9,9 @@ import SignIn from './pages/authentication/SignIn'
 import SignUp from './pages/authentication/SignUp'
 import Pnf from './pages/pnf/Pnf'
 import { ToastContainer } from 'react-toastify'
+import ProtectRoute from './ProtectRoute/ProtectRoute'
+import Edit from './pages/Edit/Edit'
+import UserDetails from './pages/userdetails/UserDetails'
 
 function App() {
   return (
@@ -17,11 +20,17 @@ function App() {
       <ToastContainer/>
       <Header/>
         <Routes>
-          <Route path='/' element={<Home/>}/>
+          <Route element={<ProtectRoute/>}>
+           <Route path="/" element={<Home/>}/>
           <Route path='/users' element={<Users/>}/>
+          </Route>
+
+
           <Route path='/books' element={<Books/>}/>
           <Route path='/signin' element={<SignIn/>}/>
           <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/edit/:id' element={<Edit/>}/>
+          <Route path='/user/details/:id' element={<UserDetails/>}/>
           <Route path='/*' element={<Pnf/>}/>
         </Routes>
       </BrowserRouter>

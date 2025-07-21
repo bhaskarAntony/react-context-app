@@ -2,9 +2,22 @@ import React, { useContext } from 'react'
 import './users.css'
 import { UserContext } from '../../context/UsersData'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function Users() {
-    const {usersData} = useContext(UserContext);
+    const {usersData, fetchUsers2} = useContext(UserContext);
+
+    const deleteHanlder = async(id) =>{
+        try {
+            const response = await axios.delete(`http://localhost:3004/users/${id}`) 
+            console.log(response);
+            toast.success('user deleted successfully.');
+            fetchUsers2();
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
 
   return (
     <div className='container p-3 p-md-5'>
@@ -27,9 +40,9 @@ function Users() {
                     <td>{item.email}</td>
                     <td>{item.mobile}</td>
                     <td>
-                        <button className='btn btn-danger btn-sm mx-1'><i className='bi bi-trash'></i></button>
-                        <Link to="/" className='btn btn-success  btn-sm mx-1'><i className='bi bi-pen'></i></Link>
-                        <Link to="/" className='btn btn-dark btn-sm mx-1'><i className='bi bi-eye'></i></Link>
+                        <button className='btn btn-danger btn-sm mx-1' onClick={()=>deleteHanlder(item.id)}><i className='bi bi-trash'></i></button>
+                        <Link to={`/edit/${item.id}`} className='btn btn-success  btn-sm mx-1'><i className='bi bi-pen'></i></Link>
+                        <Link to={`/user/details/${item.id}`} className='btn btn-dark btn-sm mx-1'><i className='bi bi-eye'></i></Link>
                     </td>
                 </tr>
             ))
